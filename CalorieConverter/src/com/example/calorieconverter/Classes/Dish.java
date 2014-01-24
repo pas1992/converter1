@@ -2,15 +2,15 @@ package com.example.calorieconverter.Classes;
 
 import java.util.ArrayList;
 
-// класс блюда
+// РєР»Р°СЃСЃ Р±Р»СЋРґР°
 public class Dish 
 {
-	//идентификатор блюда
+	// РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р±Р»СЋРґР°
 	public int Id = -1;
 	
-	//название блюда
+	// РЅР°Р·РІР°РЅРёРµ Р±Р»СЋРґР°
 	public String Name = "";
 	
-	//список продуктов в составе блюда
+	// СЃРїРёСЃРѕРє РїСЂРѕРґСѓРєС‚РѕРІ РІ СЃРѕСЃС‚Р°РІРµ Р±Р»СЋРґР°
 	public ArrayList<Product> Products = new ArrayList<Product>();
 }
