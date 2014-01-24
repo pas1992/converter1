@@ -23,31 +23,31 @@ import android.view.View.OnClickListener;
 
 import com.example.calorieconverter.Classes.*;
 
-//класс формы "Меню"
+//РєР»Р°СЃСЃ С„РѕСЂРјС‹ "РњРµРЅСЋ"
 public class MenuActivity extends Activity 
 {
-	private EditText searchEditText;	//поле поиска по названию
-	private ListView listView;			//перечень продуктов в меню
-	private Button buttonWeight;		//кнопка "Масса"
-	private Button buttonDelete;		//кнопка "Удалить"
-	private Button buttonConvert;		//кнопка "Конвертер"
-	private Button buttonBack;			//кнопка "Назад"
+	private EditText searchEditText;	//РїРѕР»Рµ РїРѕРёСЃРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ
+	private ListView listView;		//РїРµСЂРµС‡РµРЅСЊ РїСЂРѕРґСѓРєС‚РѕРІ РІ РјРµРЅСЋ
+	private Button buttonWeight;		//РєРЅРѕРїРєР° "РњР°СЃСЃР°"
+	private Button buttonDelete;		//РєРЅРѕРїРєР° "РЈРґР°Р»РёС‚СЊ"
+	private Button buttonConvert;		//РєРЅРѕРїРєР° "РљРѕРЅРІРµСЂС‚РµСЂ"
+	private Button buttonBack;		//РєРЅРѕРїРєР° "РќР°Р·Р°Рґ"
 	
-	private Database helper;	//объект работы с базой
+	private Database helper;	//РѕР±СЉРµРєС‚ СЂР°Р±РѕС‚С‹ СЃ Р±Р°Р·РѕР№
 	
-	private View currentRow;	//выбранная строка в перечне
-	private int currentId;		//идентификатор текущего продукта в меню
+	private View currentRow;	//РІС‹Р±СЂР°РЅРЅР°СЏ СЃС‚СЂРѕРєР° РІ РїРµСЂРµС‡РЅРµ
+	private int currentId;		//РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С‚РµРєСѓС‰РµРіРѕ РїСЂРѕРґСѓРєС‚Р° РІ РјРµРЅСЋ
 	
-	private ArrayList<Menu> menuItems;	//список продуктов в меню
+	private ArrayList<Menu> menuItems;	//СЃРїРёСЃРѕРє РїСЂРѕРґСѓРєС‚РѕРІ РІ РјРµРЅСЋ
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
-		//создание формы
+		//СЃРѕР·РґР°РЅРёРµ С„РѕСЂРјС‹
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_menu);
 	    
-	    //инициализация элементов управления
+	    //РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ СѓРїСЂР°РІР»РµРЅРёСЏ
 	    searchEditText = (EditText)findViewById(R.id.menu_searchEditText);
 	    listView = (ListView)findViewById(R.id.menu_listView);
 	    buttonWeight = (Button)findViewById(R.id.menu_buttonWeight);
@@ -57,13 +57,13 @@ public class MenuActivity extends Activity
 	    
 	    helper = new Database(this);
 	    
-	    //получение списка продуктов в меню
+	    //РїРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РїСЂРѕРґСѓРєС‚РѕРІ РІ РјРµРЅСЋ
 	    menuItems = helper.getMenu();
 	    
 	    currentRow = null;
 	    currentId = -1;
 	    
-	  //обработчик изменения текста в поле поиска по названию
+	  //РѕР±СЂР°Р±РѕС‚С‡РёРє РёР·РјРµРЅРµРЅРёСЏ С‚РµРєСЃС‚Р° РІ РїРѕР»Рµ РїРѕРёСЃРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ
 	    searchEditText.addTextChangedListener(new TextWatcher() 
 	    {
 			@Override
@@ -76,39 +76,39 @@ public class MenuActivity extends Activity
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
 	    });
 	    
-	    //обработчик нажатия строки в перечне продуктов
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ СЃС‚СЂРѕРєРё РІ РїРµСЂРµС‡РЅРµ РїСЂРѕРґСѓРєС‚РѕРІ
 	    listView.setOnItemClickListener(new OnItemClickListener() 
 	    {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) 
 			{
-				//снятие выделения с предыдущей строки
+				//СЃРЅСЏС‚РёРµ РІС‹РґРµР»РµРЅРёСЏ СЃ РїСЂРµРґС‹РґСѓС‰РµР№ СЃС‚СЂРѕРєРё
 				if (currentRow != null)
 				{
 					currentRow.setBackgroundColor(Color.BLACK);
 				}
 				
-				//выделение текущей строки
+				//РІС‹РґРµР»РµРЅРёРµ С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєРё
 				currentRow= view;
 				currentRow.setBackgroundColor(Color.BLUE);
 				currentId = Integer.parseInt(((HashMap<String, Object>)adapter.getItemAtPosition(position)).get("ID").toString());
 				
-				//установка доступности кнопок
+				//СѓСЃС‚Р°РЅРѕРІРєР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРЅРѕРїРѕРє
 				buttonWeight.setEnabled(true);
 				buttonDelete.setEnabled(true);
 			}
 	    });
 	    
-	    //обработчик нажатия кнопки "Масса"
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РњР°СЃСЃР°"
 	    buttonWeight.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{
-				//отображение формы ввода массы
+				//РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ С„РѕСЂРјС‹ РІРІРѕРґР° РјР°СЃСЃС‹
 				final AlertDialog.Builder dialog = new AlertDialog.Builder(MenuActivity.this);
-				dialog.setTitle("Введите массу продукта в граммах");
+				dialog.setTitle("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 				final EditText weightEditText = new EditText(MenuActivity.this);
 				weightEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				dialog.setView(weightEditText);
@@ -117,7 +117,7 @@ public class MenuActivity extends Activity
 					@Override
 					public void onClick(DialogInterface dialog, int which) 
 					{
-						//задание массы продукта в меню
+						//Р·Р°РґР°РЅРёРµ РјР°СЃСЃС‹ РїСЂРѕРґСѓРєС‚Р° РІ РјРµРЅСЋ
 						try
 						{
 							helper.setProductWeight(currentId, Double.parseDouble(weightEditText.getText().toString()));
@@ -131,7 +131,7 @@ public class MenuActivity extends Activity
 						dialog.cancel();
 					}
 				});
-				dialog.setNegativeButton("Отмена", new DialogInterface.OnClickListener() 
+				dialog.setNegativeButton("РћС‚РјРµРЅР°", new DialogInterface.OnClickListener() 
 				{
 					@Override
 					public void onClick(DialogInterface dialog, int which) 
@@ -144,33 +144,33 @@ public class MenuActivity extends Activity
 			}
 	    });
 	    
-	    //обработчик нажатия кнопки "Удалить"
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РЈРґР°Р»РёС‚СЊ"
 	    buttonDelete.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{
-				//запрос подтверждения удаления
+				//Р·Р°РїСЂРѕСЃ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ СѓРґР°Р»РµРЅРёСЏ
 				AlertDialog.Builder dialog = new AlertDialog.Builder(MenuActivity.this);
-    			dialog.setTitle("Удаление продукта");
-    			dialog.setMessage("Вы действительно хотите удалить этот продукт?");
+    			dialog.setTitle("РЈРґР°Р»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р°");
+    			dialog.setMessage("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚РѕС‚ РїСЂРѕРґСѓРєС‚?");
     			dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() 
     			{
 					@Override
 					public void onClick(DialogInterface dialog, int which) 
 					{
-						//удаление продукта из меню
+						//СѓРґР°Р»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р° РёР· РјРµРЅСЋ
 						helper.deleteFromMenu(currentId);
 						currentRow = null;
 						menuItems = helper.getMenu();
 						fillMenuTable(searchEditText.getText().toString());
 						
-						//установка недосутпности кнопок
+						//СѓСЃС‚Р°РЅРѕРІРєР° РЅРµРґРѕСЃСѓС‚РїРЅРѕСЃС‚Рё РєРЅРѕРїРѕРє
 						buttonWeight.setEnabled(false);
 		    			buttonDelete.setEnabled(false);
 					}
     			});
-    			dialog.setNegativeButton("Отмена", new DialogInterface.OnClickListener() 
+    			dialog.setNegativeButton("РћС‚РјРµРЅР°", new DialogInterface.OnClickListener() 
     			{
 					@Override
 					public void onClick(DialogInterface dialog, int which) 
@@ -182,13 +182,13 @@ public class MenuActivity extends Activity
 			}
 	    });
 	    
-	    //обработчик нажатия кнопки "Ковертер"
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РљРѕРІРµСЂС‚РµСЂ"
 	    buttonConvert.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{
-				//расчет энергетической ценности меню
+				//СЂР°СЃС‡РµС‚ СЌРЅРµСЂРіРµС‚РёС‡РµСЃРєРѕР№ С†РµРЅРЅРѕСЃС‚Рё РјРµРЅСЋ
 				double calories = 0.0;
 				double proteins = 0.0;
 				double fats = 0.0;
@@ -202,10 +202,10 @@ public class MenuActivity extends Activity
 					carbohydrates += product.Carbohydrates * item.Weight / 100.0;
 				}
 				
-				//вывод энергетической ценности
+				//РІС‹РІРѕРґ СЌРЅРµСЂРіРµС‚РёС‡РµСЃРєРѕР№ С†РµРЅРЅРѕСЃС‚Рё
 				AlertDialog.Builder dialog = new AlertDialog.Builder(MenuActivity.this);
-				dialog.setTitle("Энергетическая ценность");
-				dialog.setMessage(String.format("Ккал:\t\t\t%.2f\nБелки:\t\t\t%.2f\nЖиры:\t\t\t%.2f\nУглеводы:\t%.2f\n", calories, proteins, fats, carbohydrates));
+				dialog.setTitle("Р­РЅРµСЂРіРµС‚РёС‡РµСЃРєР°СЏ С†РµРЅРЅРѕСЃС‚СЊ");
+				dialog.setMessage(String.format("РљРєР°Р»:\t\t\t%.2f\nР‘РµР»РєРё:\t\t\t%.2f\nР–РёСЂС‹:\t\t\t%.2f\nРЈРіР»РµРІРѕРґС‹:\t%.2f\n", teins, fats, carbohydrates));
 				dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() 
     			{
 					@Override
@@ -218,13 +218,13 @@ public class MenuActivity extends Activity
 			}
 	    });
 	    
-	    //обработчик нажатия кнопки "Назад"
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РќР°Р·Р°Рґ"
 	    buttonBack.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{
-				//закрытие формы
+				//Р·Р°РєСЂС‹С‚РёРµ С„РѕСЂРјС‹
 				finish();
 			}
 	    });
@@ -232,18 +232,18 @@ public class MenuActivity extends Activity
 	    fillMenuTable("");
 	}
 	
-	//отображение продуктов с искомым названием
+	//РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РїСЂРѕРґСѓРєС‚РѕРІ СЃ РёСЃРєРѕРјС‹Рј РЅР°Р·РІР°РЅРёРµРј
 	private void fillMenuTable(String query) 
 	{
 		final Handler handler = new Handler();
-		final String _query = query; //строка поиска по названию
+		final String _query = query; //СЃС‚СЂРѕРєР° РїРѕРёСЃРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ
 		
 		Thread thread = new Thread(new Runnable() 
 		{
 			@Override
 			public void run() 
 			{	
-				//фильтрация списка
+				//С„РёР»СЊС‚СЂР°С†РёСЏ СЃРїРёСЃРєР°
 				ArrayList<HashMap<String, Object>> menu = new ArrayList<HashMap<String, Object>>();
 			    for (int i = 0; i < menuItems.size(); i++) 
 			    {
@@ -253,13 +253,13 @@ public class MenuActivity extends Activity
 			    		HashMap<String, Object> hm = new HashMap<String, Object>();
 			    		hm.put("ID", menuItems.get(i).Id);
 			    		hm.put("NAME", productName);
-			    		hm.put("WEIGHT", String.format("Масса: %.2f г", menuItems.get(i).Weight));
+			    		hm.put("WEIGHT", String.format(""РњР°СЃСЃР°: %.2f Рі", nuItems.get(i).Weight));
 			    		menu.add(hm);
 		    		}
 			    }
 			    final ArrayList<HashMap<String, Object>> _menu = menu;
 			    
-			    ////отображение отфильтрованного списка продуктов
+			    ////РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅРѕРіРѕ СЃРїРёСЃРєР° РїСЂРѕРґСѓРєС‚РѕРІРѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅРѕРіРѕ СЃРїРёСЃРєР° РїСЂРѕРґСѓРєС‚РѕРІ
 			    handler.post(new Runnable() 
 			    {
 					@Override
@@ -275,7 +275,7 @@ public class MenuActivity extends Activity
 		});
 		thread.start();
 		
-		//установка недоступности кнопок
+		//РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅРѕРіРѕ СЃРїРёСЃРєР° РїСЂРѕРґСѓРєС‚РѕРІ
 		buttonWeight.setEnabled(false);
 		buttonDelete.setEnabled(false);
 	}
