@@ -1,26 +1,26 @@
 package com.example.calorieconverter.Classes;
 
-//класс продукта
+// РєР»Р°СЃСЃ РїСЂРѕРґСѓРєС‚Р°
 public class Product 
 {
-	//идентификатор продукта
+	// РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїСЂРѕРґСѓРєС‚Р°
 	public int Id = 0;
 	
-	//название продукта
+	// РЅР°Р·РІР°РЅРёРµ РїСЂРѕРґСѓРєС‚Р°
 	public String Name = "";
 	
-	//идентификатор типа продукта
+	// РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С‚РёРїР° РїСЂРѕРґСѓРєС‚Р°
 	public int Type = 0;
 	
-	//калории
+	// РєР°Р»РѕСЂРёРё
 	public double Calories = 0;
 	
-	//белки
+	// Р±РµР»РєРё
 	public double Proteins = 0.0;
 	
-	//жиры
+	// Р¶РёСЂС‹
 	public double Fats = 0.0;
 	
-	//углеводы
+	// СѓРіР»РµРІРѕРґС‹
 	public double Carbohydrates = 0.0;
 }
