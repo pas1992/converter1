@@ -16,52 +16,52 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.view.View.OnClickListener;
 
-//класс формы "Новое блюдо"
+//РєР»Р°СЃСЃ С„РѕСЂРјС‹ "РќРѕРІРѕРµ Р±Р»СЋРґРѕ"
 public class NewDishActivity extends Activity implements OnClickListener
 {
-	private EditText nameEditText;			//поле "Название"
-	private Button buttonAdd;				//кнопка "Добавить продукт"
-	private ListView productsListView;		//таблица продуктов
-	private Button buttonOK;				//кнопка "OK"
-	private Button buttonCancel;			//кнопка "Отмена"
+	private EditText nameEditText;			//РїРѕР»Рµ "РќР°Р·РІР°РЅРёРµ"
+	private Button buttonAdd;			//РєРЅРѕРїРєР° "Р”РѕР±Р°РІРёС‚СЊ РїСЂРѕРґСѓРєС‚"
+	private ListView productsListView;		//С‚Р°Р±Р»РёС†Р° РїСЂРѕРґСѓРєС‚РѕРІ
+	private Button buttonOK;			//РєРЅРѕРїРєР° "OK"
+	private Button buttonCancel;			//РєРЅРѕРїРєР° "РћС‚РјРµРЅР°"
 	
-	private Database helper;	//объект работы с базой
+	private Database helper;	//РѕР±СЉРµРєС‚ СЂР°Р±РѕС‚С‹ СЃ Р±Р°Р·РѕР№
 	
-	private Dish dish;	//текущее блюдо
+	private Dish dish;	//С‚РµРєСѓС‰РµРµ Р±Р»СЋРґРѕ
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
-		//создание формы
+		//СЃРѕР·РґР°РЅРёРµ С„РѕСЂРјС‹
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_newdish);
 	    
 	    helper = new Database(this);
 
-	    //инициализация элементов управления
+	    //РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ СѓРїСЂР°РІР»РµРЅРёСЏ
 	    nameEditText = (EditText)findViewById(R.id.newDish_nameEditText);
 	    buttonAdd = (Button)findViewById(R.id.newDish_buttonAdd);
 	    productsListView = (ListView)findViewById(R.id.newDish_productsListView);
 	    buttonOK = (Button)findViewById(R.id.newDish_buttonOK);
 	    buttonCancel = (Button)findViewById(R.id.newDish_buttonCancel);
 	    
-	    //получение идентификатора текущего блюда
+	    //РїРѕР»СѓС‡РµРЅРёРµ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР° С‚РµРєСѓС‰РµРіРѕ Р±Р»СЋРґР°
 	    try
 	    {
 	    	dish = helper.getDish(getIntent().getExtras().getInt("Id"));
 	    	nameEditText.setText(dish.Name);
 	    	fillProductTable();
-	    	//форма открыта для редактирования существующего блюда
+	    	//С„РѕСЂРјР° РѕС‚РєСЂС‹С‚Р° РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ Р±Р»СЋРґР°
 	    }
 	    catch (Exception e)
 	    {
 	    	dish = new Dish();
-	    	//форма открыта для добавления нового блюда
+	    	//С„РѕСЂРјР° РѕС‚РєСЂС‹С‚Р° РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕРіРѕ Р±Р»СЋРґР°
 	    }
 	    
 	    buttonAdd.setOnClickListener(this);
 	    
-	    //обработчик нажатия кнопки "OK"
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "OK"
 	    buttonOK.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
@@ -70,41 +70,41 @@ public class NewDishActivity extends Activity implements OnClickListener
 				dish.Name = nameEditText.getText().toString();
 				if (dish.Id != -1)
 				{
-					//редактирование существеющего блюда
+					//СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ СЃСѓС‰РµСЃС‚РІРµСЋС‰РµРіРѕ Р±Р»СЋРґР°
 					helper.updateDish(dish);
 				}
 				else
 				{
-					//добавление нового блюда
+					//РґРѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ Р±Р»СЋРґР°
 					helper.insertDish(dish);
 				}
 				finish();
 			}
 	    });
 	    
-	    //обработчик нажатия кнопки ""Отмена
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РћС‚РјРµРЅР°"
 	    buttonCancel.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v)
 			{
-				//закрытие формы
+				//Р·Р°РєСЂС‹С‚РёРµ С„РѕСЂРјС‹
 				finish();
 			}
 	    });
 	}
 
-	//обработчик нажатия кнопки "Добавить продукт"
+	//РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "Р”РѕР±Р°РІРёС‚СЊ РїСЂРѕРґСѓРєС‚"
 	@Override
 	public void onClick(View v) 
 	{
-		//открытие формы "Продукты" в режиме добавления продукта в блюдо
+		//РѕС‚РєСЂС‹С‚РёРµ С„РѕСЂРјС‹ "РџСЂРѕРґСѓРєС‚С‹" РІ СЂРµР¶РёРјРµ РґРѕР±Р°РІР»РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р»СЋРґРѕ
 		Intent intent = new Intent(NewDishActivity.this, ProductsActivity.class);
 		intent.putExtra("Mode", true);
 		startActivityForResult(intent, 1);
 	}
 
-	//добавление продукта в блюдо
+	//РґРѕР±Р°РІР»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р»СЋРґРѕ
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -116,7 +116,7 @@ public class NewDishActivity extends Activity implements OnClickListener
 		}
 	}
 	
-	//отображение списка продуктов в составе блюда
+	//РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРїРёСЃРєР° РїСЂРѕРґСѓРєС‚РѕРІ РІ СЃРѕСЃС‚Р°РІРµ Р±Р»СЋРґР°
 	private void fillProductTable() 
 	{
 		ArrayList<HashMap<String, Object>> products = new ArrayList<HashMap<String, Object>>();
