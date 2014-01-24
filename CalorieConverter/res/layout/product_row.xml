@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:orientation="horizontal" >
+    
+    <TextView
+        android:id="@+id/ProductColumn0"
+        android:layout_width="0dp"
+        android:layout_weight="0"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:background="#fff"
+        android:layout_margin="0dip"
+        android:gravity="center_horizontal"
+        >
+    </TextView>
+    
+    <TextView
+        android:id="@+id/ProductColumn1"
+        android:layout_width="80dp"
+        android:layout_weight="8"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:background="#fff"
+        android:layout_margin="1dip"
+        android:gravity="center_horizontal"
+        >
+    </TextView>
+    
+    <TextView
+        android:id="@+id/ProductColumn2"
+        android:layout_width="0dp"
+        android:layout_weight="0"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:background="#fff"
+        android:layout_margin="0dip"
+        android:gravity="center_horizontal"
+        >
+    </TextView>
+     
+    <TextView
+        android:id="@+id/ProductColumn3"
+        android:layout_width="40dp"
+        android:layout_weight="4"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:background="#fff"
+        android:layout_margin="1dip"
+        android:gravity="center_horizontal">
+    </TextView>
+     
+    <TextView
+        android:id="@+id/ProductColumn4"
+        android:layout_width="50dp"
+        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:background="#fff"
+        android:layout_margin="1dip"
+        android:gravity="center_horizontal">
+    </TextView>
+     
+    <TextView
+        android:id="@+id/ProductColumn5"
+        android:layout_width="40dp"
+        android:layout_weight="4"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:background="#fff"
+        android:layout_margin="1dip"
+        android:gravity="center_horizontal">
+    </TextView>
+    
+    <TextView
+        android:id="@+id/ProductColumn6"
+        android:layout_width="80dp"
+        android:layout_weight="8"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:background="#fff"
+        android:layout_margin="1dip"
+        android:gravity="center_horizontal">
+    </TextView>
+
+</LinearLayout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/products_productTypesSpinner"
+		android:layout_width="match_parent"
+		android:layout_height="50dp" />
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="20dp"
+    	android:orientation="horizontal">
+    		
+        <TextView 
+        	android:textColor="#fff"
+            android:layout_width="80dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/products_column1Header" />
+        
+        <TextView
+           	android:textColor="#fff"
+            android:layout_width="40dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/products_column2Header" />
+        
+        <TextView 
+        	android:textColor="#fff"
+            android:layout_width="50dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/products_column3Header" />
+        
+        <TextView
+        	android:textColor="#fff"
+            android:layout_width="40dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/products_column4Header" />
+        
+        <TextView
+        	android:textColor="#fff"
+            android:layout_width="80dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/products_column5Header" />
+        
+	</LinearLayout>
+
+    <ListView
+        android:id="@+id/products_productsListView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+    
+    <EditText
+            android:id="@+id/products_searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/products_searchEditTextHint" />
+    
+    <LinearLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal">
+        
+        <Button
+        	android:id="@+id/products_buttonToMenu"
+        	style="?android:attr/buttonStyleSmall"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:text="@string/products_buttonToMenuText" />
+        
+        <Button
+        	android:id="@+id/products_buttonUpdate"
+        	style="?android:attr/buttonStyleSmall"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:text="@string/products_buttonUpdateText" />
+        
+        <Button
+        	android:id="@+id/products_buttonDelete"
+        	style="?android:attr/buttonStyleSmall"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:text="@string/products_buttonDeleteText" />
+        
+        <Button
+        	android:id="@+id/products_buttonBack"
+        	style="?android:attr/buttonStyleSmall"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:text="@string/products_buttonBackText" />
+        
+        <Button
+        	android:id="@+id/products_buttonOK"
+        	style="?android:attr/buttonStyleSmall"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:visibility="gone"
+        	android:text="@string/products_buttonOKText" />
+        
+        <Button
+        	android:id="@+id/products_buttonCancel"
+        	style="?android:attr/buttonStyleSmall"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:visibility="gone"
+        	android:text="@string/products_buttonCancelText" />
+        
+    </LinearLayout>
+    
+</LinearLayout>

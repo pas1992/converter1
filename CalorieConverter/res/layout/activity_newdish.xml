@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:gravity="bottom"
+        android:text="@string/newDish_nameTextViewText" />
+    
+    <EditText
+       	android:id="@+id/newDish_nameEditText"
+       	android:layout_width="match_parent"
+       	android:layout_height="wrap_content"
+       	android:inputType="text" />
+    
+    <Button
+        android:id="@+id/newDish_buttonAdd"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/newDish_buttonAddText" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="20dp"
+    	android:orientation="horizontal">
+    		
+        <TextView 
+        	android:textColor="#fff"
+            android:layout_width="80dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/newDish_column1Header" />
+        
+        <TextView
+           	android:textColor="#fff"
+            android:layout_width="40dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/newDish_column2Header" />
+        
+        <TextView 
+        	android:textColor="#fff"
+            android:layout_width="50dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/newDish_column3Header" />
+        
+        <TextView
+        	android:textColor="#fff"
+            android:layout_width="40dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/newDish_column4Header" />
+        
+        <TextView
+        	android:textColor="#fff"
+            android:layout_width="80dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="#7fc342"
+            android:layout_margin="1dip"
+            android:text="@string/newDish_column5Header" />
+        
+	</LinearLayout>
+
+    <ListView
+        android:id="@+id/newDish_productsListView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/newDish_buttonOK"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/newDish_buttonOKText" />
+
+        <Button
+            android:id="@+id/newDish_buttonCancel"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/newDish_buttonCancelText" />
+        
+    </LinearLayout>
+
+</LinearLayout>

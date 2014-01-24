@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Конвертер калорий</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="main_buttonNewProductText">Новый продукт</string>
+    <string name="main_buttonProductsText">Продукты</string>
+    <string name="main_buttonNewDishText">Новое блюдо</string>
+    <string name="main_buttonDishesText">Блюда</string>
+    <string name="main_buttonMenuText">Меню</string>
+    
+    <string name="newProduct_typeTextViewText">Тип продукта:</string>
+    <string name="newProduct_nameTextViewText">Название:</string>
+    <string name="newProduct_caloriesTextViewText">Ккал:</string>
+    <string name="newProduct_proteinsTextViewText">Белки:</string>
+    <string name="newProduct_fatsTextViewText">Жиры:</string>
+    <string name="newProduct_carbohydratesTextViewText">Углеводы:</string>
+    <string name="newProduct_buttonOKText">OK</string>
+    <string name="newProduct_buttonCancelText">Отмена</string>
+    
+    <string name="products_column1Header">Название</string>
+    <string name="products_column2Header">Ккал</string>
+    <string name="products_column3Header">Белки</string>
+    <string name="products_column4Header">Жиры</string>
+    <string name="products_column5Header">Углеводы</string>
+    <string name="products_searchEditTextHint">Поиск</string>
+    <string name="products_buttonToMenuText">В меню</string>
+    <string name="products_buttonUpdateText">Редактировать</string>
+    <string name="products_buttonDeleteText">Удалить</string>
+    <string name="products_buttonBackText">Назад</string>
+    <string name="products_buttonOKText">OK</string>
+    <string name="products_buttonCancelText">Отмена</string>
+    
+    <string name="newDish_nameTextViewText">Название</string>
+    <string name="newDish_buttonAddText">Добавить продукт</string>
+    <string name="newDish_column1Header">Название</string>
+    <string name="newDish_column2Header">Ккал</string>
+    <string name="newDish_column3Header">Белки</string>
+    <string name="newDish_column4Header">Жиры</string>
+    <string name="newDish_column5Header">Углеводы</string>
+    <string name="newDish_buttonOKText">OK</string>
+    <string name="newDish_buttonCancelText">Отмена</string>
+    
+    <string name="dishes_column1Header">Название</string>
+    <string name="dishes_column2Header">Ккал</string>
+    <string name="dishes_column3Header">Белки</string>
+    <string name="dishes_column4Header">Жиры</string>
+    <string name="dishes_column5Header">Углеводы</string>
+    <string name="dishes_searchEditTextHint">Поиск</string>
+    <string name="dishes_buttonToMenuText">В меню</string>
+    <string name="dishes_buttonUpdateText">Редактировать</string>
+    <string name="dishes_buttonDeleteText">Удалить</string>
+    <string name="dishes_buttonBackText">Назад</string>
+    
+    <string name="menu_searchEditTextHint">Поиск</string>
+    <string name="menu_buttonWeightText">Масса</string>
+    <string name="menu_buttonDeleteText">Удалить</string>
+    <string name="menu_buttonConvertText">Конвертер</string>
+    <string name="menu_buttonBackText">Назад</string>
+
+</resources>

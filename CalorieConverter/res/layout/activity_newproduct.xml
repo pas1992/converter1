@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:gravity="bottom"
+        android:text="@string/newProduct_typeTextViewText" />
+    
+    <Spinner
+        android:id="@+id/newProduct_productTypesSinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:gravity="bottom"
+        android:text="@string/newProduct_nameTextViewText" />
+
+    <EditText
+       	android:id="@+id/newProduct_nameEditText"
+       	android:layout_width="match_parent"
+       	android:layout_height="wrap_content"
+       	android:inputType="text" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:orientation="horizontal"
+    	android:layout_height="wrap_content">
+    	
+        <TextView
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:textColor="#fff"
+        	android:layout_weight="1"
+        	android:gravity="center|left"
+        	android:text="@string/newProduct_caloriesTextViewText" />
+        
+        <EditText
+        	android:id="@+id/newProduct_caloriesEditText"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center|right"
+        	android:layout_weight="1"
+        	android:inputType="numberDecimal" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:orientation="horizontal"
+    	android:layout_height="wrap_content">
+    	
+        <TextView
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:textColor="#fff"
+        	android:layout_weight="1"
+        	android:gravity="center|left"
+        	android:text="@string/newProduct_proteinsTextViewText" />
+        
+        <EditText
+        	android:id="@+id/newProduct_proteinsEditText"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center|right"
+        	android:layout_weight="1"
+        	android:inputType="numberDecimal" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:orientation="horizontal"
+    	android:layout_height="wrap_content">
+    	
+        <TextView
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:textColor="#fff"
+        	android:layout_weight="1"
+        	android:gravity="center|left"
+        	android:text="@string/newProduct_fatsTextViewText" />
+        
+        <EditText
+        	android:id="@+id/newProduct_fatsEditText"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center|right"
+        	android:layout_weight="1"
+        	android:inputType="numberDecimal" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:orientation="horizontal"
+    	android:layout_height="wrap_content">
+    	
+        <TextView
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:textColor="#fff"
+        	android:layout_weight="1"
+        	android:gravity="center|left"
+        	android:text="@string/newProduct_carbohydratesTextViewText" />
+        
+        <EditText
+        	android:id="@+id/newProduct_carbohydratesEditText"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center|right"
+        	android:layout_weight="1"
+        	android:inputType="numberDecimal" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/newProduct_buttonOK"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/newProduct_buttonOKText" />
+
+        <Button
+            android:id="@+id/newProduct_buttonCancel"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/newProduct_buttonCancelText" />
+    </LinearLayout>
+
+</LinearLayout>
