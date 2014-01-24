@@ -28,37 +28,37 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-//класс формы "Продукты"
+// РєР»Р°СЃСЃ С„РѕСЂРјС‹ "РџСЂРѕРґСѓРєС‚С‹"
 public class ProductsActivity extends Activity implements OnClickListener
 {
-	private int currentTypeId;						//идетификатор выбранного типа продуктов
-	private LinearLayout currentRow;				//выбранная строка в таблице продуктов
-	private ArrayList<Product> productItems;		//список продуктов
-	private ArrayList<ProductType> productTypes;	//список типов продуктов
+	private int currentTypeId;			//РёРґРµС‚РёС„РёРєР°С‚РѕСЂ РІС‹Р±СЂР°РЅРЅРѕРіРѕ С‚РёРїР° РїСЂРѕРґСѓРєС‚РѕРІ
+	private LinearLayout currentRow;		//РІС‹Р±СЂР°РЅРЅР°СЏ СЃС‚СЂРѕРєР° РІ С‚Р°Р±Р»РёС†Рµ РїСЂРѕРґСѓРєС‚РѕРІ
+	private ArrayList<Product> productItems;	//СЃРїРёСЃРѕРє РїСЂРѕРґСѓРєС‚РѕРІ
+	private ArrayList<ProductType> productTypes;	//СЃРїРёСЃРѕРє С‚РёРїРѕРІ РїСЂРѕРґСѓРєС‚РѕРІ
 	
-	private Database helper;	//объект работы с базой
+	private Database helper;	//РѕР±СЉРµРєС‚ СЂР°Р±РѕС‚С‹ СЃ Р±Р°Р·РѕР№
 	
-	private Spinner productTypesSpinner;	//выпадающий список типов продуктов
-	private ListView productsListView;		//таблица продуктов
-	private EditText searchEditText;		//поле поиска по названию
-	private Button buttonToMenu;			//кнопка "В меню"
-	private Button buttonUpdate;			//кнопка "Редактировать"
-	private Button buttonDelete;			//кнопка "Удалить"
-	private Button buttonBack;				//кнопка "Назад"
-	private Button buttonOK;				//кнопка "OK" (видна в режиме добавления продукта в блюдо)
-	private Button buttonCancel;			//кнопка "Отмена" (видна в режиме добавления продукта в блюдо)
+	private Spinner productTypesSpinner;		//РІС‹РїР°РґР°СЋС‰РёР№ СЃРїРёСЃРѕРє С‚РёРїРѕРІ РїСЂРѕРґСѓРєС‚РѕРІ
+	private ListView productsListView;		//С‚Р°Р±Р»РёС†Р° РїСЂРѕРґСѓРєС‚РѕРІ
+	private EditText searchEditText;		//РїРѕР»Рµ РїРѕРёСЃРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ
+	private Button buttonToMenu;			//РєРЅРѕРїРєР° "Р’ РјРµРЅСЋ"
+	private Button buttonUpdate;			//РєРЅРѕРїРєР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"
+	private Button buttonDelete;			//kРЅРѕРїРєР° "РЈРґР°Р»РёС‚СЊ"
+	private Button buttonBack;			//РєРЅРѕРїРєР° "РќР°Р·Р°Рґ"
+	private Button buttonOK;			//РєРЅРѕРїРєР° "OK" (РІРёРґРЅР° РІ СЂРµР¶РёРјРµ РґРѕР±Р°РІР»РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р»СЋРґРѕ)
+	private Button buttonCancel;			//РєРЅРѕРїРєР° "РћС‚РјРµРЅР°" (РІРёРґРЅР° РІ СЂРµР¶РёРјРµ РґРѕР±Р°РІР»РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р»СЋРґРѕ)
 	
-	private boolean mode;	//true - режим добавления продукта в блюдо
+	private boolean mode;	//true - СЂРµР¶РёРј РґРѕР±Р°РІР»РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р»СЋРґРѕ
 	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
-		//создание формы
+		//СЃРѕР·РґР°РЅРёРµ С„РѕСЂРјС‹
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_products);
 	    
-	    //инициализация элементов управленя
+	    //РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ СѓРїСЂР°РІР»РµРЅРёСЏ
 	    productTypesSpinner = (Spinner)findViewById(R.id.products_productTypesSpinner);
 	    productsListView = (ListView)findViewById(R.id.products_productsListView);
 	    searchEditText = (EditText)findViewById(R.id.products_searchEditText);
@@ -69,19 +69,19 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    buttonOK = (Button)findViewById(R.id.products_buttonOK);
 	    buttonCancel = (Button)findViewById(R.id.products_buttonCancel);
 	    
-	    //проверка режима
+	    //РїСЂРѕРІРµСЂРєР° СЂРµР¶РёРјР°
 	    try
 	    {
 	    	mode = getIntent().getExtras().getBoolean("Mode");
-	    	//форма открыта в режиме добавления продукта в блюдо
+	    	//С„РѕСЂРјР° РѕС‚РєСЂС‹С‚Р° РІ СЂРµР¶РёРјРµ РґРѕР±Р°РІР»РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р»СЋРґРѕ
 	    }
 	    catch (Exception e)
 	    {
 	    	mode = false;
-	    	//форма открыта в режиме по умолчанию
+	    	//С„РѕСЂРјР° РѕС‚РєСЂС‹С‚Р° РІ СЂРµР¶РёРјРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	    }
 	    
-	    //установка видимых кнопок
+	    //СѓСЃС‚Р°РЅРѕРІРєР° РІРёРґРёРјС‹С… РєРЅРѕРїРѕРє
 	    if (mode)
 	    {
 	    	buttonToMenu.setVisibility(View.GONE);
@@ -101,7 +101,7 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    	buttonCancel.setVisibility(View.GONE);
 	    }
 	    
-	    //установка недоступности кнопок
+	    // СѓСЃС‚Р°РЅРѕРІРєР° РЅРµРґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРЅРѕРїРѕРє
 	    buttonToMenu.setEnabled(false);
 		buttonDelete.setEnabled(false);
 		buttonUpdate.setEnabled(false);
@@ -110,18 +110,18 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    helper = new Database(this);
 		currentRow = null;
 		
-		//получение списка типов продуктов из базы
+		//РїРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° С‚РёРїРѕРІ РїСЂРѕРґСѓРєС‚РѕРІ РёР· Р±Р°Р·С‹
 		productTypes = helper.getProductTypes();
-		productTypes.add(0, new ProductType("Все"));
+		productTypes.add(0, new ProductType("Р’СЃРµ);
 		
 		currentTypeId = 0;
 	    
-		//отображение типов продуктов в выпадающем списке
+		//РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ С‚РёРїРѕРІ РїСЂРѕРґСѓРєС‚РѕРІ РІ РІС‹РїР°РґР°СЋС‰РµРј СЃРїРёСЃРєРµ
 	    ArrayAdapter<ProductType> spinnerArrayAdapter = new ArrayAdapter<ProductType>(this, android.R.layout.simple_spinner_item, productTypes);
 		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		productTypesSpinner.setAdapter(spinnerArrayAdapter);
 		
-		//обработчик выбора типа продуктов в выпадающем списке
+		//РѕР±СЂР°Р±РѕС‚С‡РёРє РІС‹Р±РѕСЂР° С‚РёРїР° РїСЂРѕРґСѓРєС‚РѕРІ РІ РІС‹РїР°РґР°СЋС‰РµРј СЃРїРёСЃРєРµ
 		productTypesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() 
 		{
 			@Override
@@ -139,15 +139,15 @@ public class ProductsActivity extends Activity implements OnClickListener
 			}
 		});
 	    
-		//получение списка продуктов из базы
+		//РїРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РїСЂРѕРґСѓРєС‚РѕРІ РёР· Р±Р°Р·С‹
 	    productItems = new Database(this).getProducts();
 	    
-	    //обработчик нажатия на строку в таблице продуктов
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РЅР° СЃС‚СЂРѕРєСѓ РІ С‚Р°Р±Р»РёС†Рµ РїСЂРѕРґСѓРєС‚РѕРІ
 	    productsListView.setOnItemClickListener(new OnItemClickListener() 
 	    {
 	    	public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 	    	{
-	    		//снятие выделение с предыдущей строки
+	    		//СЃРЅСЏС‚РёРµ РІС‹РґРµР»РµРЅРёРµ СЃ РїСЂРµРґС‹РґСѓС‰РµР№ СЃС‚СЂРѕРєРё
 	    		if (currentRow != null) 
 	    		{
 	    			((TextView)currentRow.getChildAt(0)).setBackgroundColor(Color.WHITE);
@@ -159,7 +159,7 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    			((TextView)currentRow.getChildAt(6)).setBackgroundColor(Color.WHITE);
 	    		}
 	    		
-	    		//выделение текущей строки
+	    		//РІС‹РґРµР»РµРЅРёРµ С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєРё
 	    		currentRow = (LinearLayout)view;
 	    		((TextView)currentRow.getChildAt(0)).setBackgroundColor(Color.BLUE);
     			((TextView)currentRow.getChildAt(1)).setBackgroundColor(Color.BLUE);
@@ -169,7 +169,7 @@ public class ProductsActivity extends Activity implements OnClickListener
     			((TextView)currentRow.getChildAt(5)).setBackgroundColor(Color.BLUE);
     			((TextView)currentRow.getChildAt(6)).setBackgroundColor(Color.BLUE);
     			
-    			//установка доступности кнопок
+    			//СѓСЃС‚Р°РЅРѕРІРєР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРЅРѕРїРѕРє
     			buttonToMenu.setEnabled(true);
     			buttonDelete.setEnabled(true);
     			buttonUpdate.setEnabled(true);
@@ -177,18 +177,18 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    	}
 	    });
 	    
-	    //обработчик нажатия кнопки "В меню"
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "Р’ РјРµРЅСЋ"
 	    buttonToMenu.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{
-				//добавление продукта в меню
+				//РґРѕР±Р°РІР»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р° РІ РјРµРЅСЋ
 				helper.addToMenu(Integer.parseInt((String)((TextView)currentRow.getChildAt(0)).getText()));
 				
-				//вывод сообщения о добавлении продукта в меню
+				//РІС‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ Рѕ РґРѕР±Р°РІР»РµРЅРёРё РїСЂРѕРґСѓРєС‚Р° РІ РјРµРЅСЋ
 				AlertDialog.Builder dialog = new AlertDialog.Builder(ProductsActivity.this);
-				dialog.setMessage("Продукт успешно добавлен в меню");
+				dialog.setMessage("РџСЂРѕРґСѓРєС‚ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ РІ РјРµРЅСЋ");
 				dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() 
     			{
 					@Override
@@ -203,7 +203,7 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    
 	    buttonUpdate.setOnClickListener(this);
 	    
-	    //обработчик нажатия кнопки "Удалить"
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РЈРґР°Р»РёС‚СЊ"
 	    buttonDelete.setOnClickListener(new OnClickListener() 
 	    {
 	    	@Override
@@ -211,31 +211,31 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    	{
 	    		if (currentRow != null) 
 	    		{
-	    			//запрос подтверждения удаления
+	    			//Р·Р°РїСЂРѕСЃ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ СѓРґР°Р»РµРЅРёСЏ
 	    			AlertDialog.Builder dialog = new AlertDialog.Builder(ProductsActivity.this);
-	    			dialog.setTitle("Удаление продукта");
-	    			dialog.setMessage("Вы действительно хотите удалить этот продукт?");
+	    			dialog.setTitle("РЈРґР°Р»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р°");
+	    			dialog.setMessage("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚РѕС‚ РїСЂРѕРґСѓРєС‚?");
 	    			dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() 
 	    			{
     					@Override
     					public void onClick(DialogInterface dialog, int which) 
     					{
-    						//удаление продукта из базы
+    						//СѓРґР°Р»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р° РёР· Р±Р°Р·С‹
     						helper.deleteProduct(Integer.parseInt((String)((TextView)currentRow.getChildAt(0)).getText()));
     						
-    						//обновление таблицы продуктов
+    						//РѕР±РЅРѕРІР»РµРЅРёРµ С‚Р°Р±Р»РёС†С‹ РїСЂРѕРґСѓРєС‚РѕРІ
     						currentRow = null;
     						productItems = helper.getProducts();
     						fillProductTable(currentTypeId, searchEditText.getText().toString());
     						
-    						//установка недоступности кнопок
+    						//СѓСЃС‚Р°РЅРѕРІРєР° РЅРµРґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРЅРѕРїРѕРє
     						buttonToMenu.setEnabled(false);
     		    			buttonDelete.setEnabled(false);
     		    			buttonUpdate.setEnabled(false);
     		    			buttonOK.setEnabled(false);
     					}
 	    			});
-	    			dialog.setNegativeButton("Отмена", new DialogInterface.OnClickListener() 
+	    			dialog.setNegativeButton("РћС‚РјРµРЅР°", new DialogInterface.OnClickListener() 
 	    			{
 						@Override
 						public void onClick(DialogInterface dialog, int which) 
@@ -248,45 +248,45 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    	}
 	    });
 	    
-	    //обработчик нажатия кнопки "Назад"
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РќР°Р·Р°Рґ"
 	    buttonBack.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{
-				//закрытие формы
+				//Р·Р°РєСЂС‹С‚РёРµ С„РѕСЂРјС‹
 				finish(); 
 			}
 	    });
 	    
-	    //обработчки нажатия кнопки "ОК" (режим добавления продукта в блюдо)
+	    //РѕР±СЂР°Р±РѕС‚С‡РєРё РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РћРљ" (СЂРµР¶РёРј РґРѕР±Р°РІР»РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р»СЋРґРѕ)
 	    buttonOK.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{
-				//передача идентификатора выбранного продукта форме "Новое блюдо"
+				//РїРµСЂРµРґР°С‡Р° РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РїСЂРѕРґСѓРєС‚Р° С„РѕСЂРјРµ "РќРѕРІРѕРµ Р±Р»СЋРґРѕ"
 				Intent intent = new Intent();
 				intent.putExtra("Id", ((TextView)currentRow.getChildAt(0)).getText().toString());
 				setResult(RESULT_OK, intent);
 				
-				//закрытие формы
+				//Р·Р°РєСЂС‹С‚РёРµ С„РѕСЂРјС‹
 				finish();
 			}
 	    });
 	    
-	    //обработчик нажатия кнопки "Отмена" (режим добавления продукта в блюдо)
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РћС‚РјРµРЅР°" (СЂРµР¶РёРј РґРѕР±Р°РІР»РµРЅРёСЏ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р»СЋРґРѕ)
 	    buttonCancel.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{ 
-				//закрытие формы
+				//Р·Р°РєСЂС‹С‚РёРµ С„РѕСЂРјС‹
 				finish(); 
 			}
 	    });
 	    
-	    //обработчик изменения текста в поле поиска по названию
+	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РёР·РјРµРЅРµРЅРёСЏ С‚РµРєСЃС‚Р° РІ РїРѕР»Рµ РїРѕРёСЃРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ
 	    searchEditText.addTextChangedListener(new TextWatcher() 
 	    {
 			@Override
@@ -305,21 +305,21 @@ public class ProductsActivity extends Activity implements OnClickListener
 	    fillProductTable(currentTypeId, "");
 	}
 	
-	//отображение продуктов выбранного типа с искомым названием
+	//РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РїСЂРѕРґСѓРєС‚РѕРІ РІС‹Р±СЂР°РЅРЅРѕРіРѕ С‚РёРїР° СЃ РёСЃРєРѕРјС‹Рј РЅР°Р·РІР°РЅРёРµРј
 	private void fillProductTable(int typeId, String query) 
 	{
 		final Handler handler = new Handler();
-		final int _typeId = typeId;		//тип продукта
-		final String _query = query;	//строка поиска по названию
+		final int _typeId = typeId;		//С‚РёРї РїСЂРѕРґСѓРєС‚Р°
+		final String _query = query;	//СЃС‚СЂРѕРєР° РїРѕРёСЃРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ
 		
 		Thread thread = new Thread(new Runnable() 
 		{
 			@Override
 			public void run() 
 			{
-				//выполенение в параллельном потке
+				//РІС‹РїРѕР»РµРЅРµРЅРёРµ РІ РїР°СЂР°Р»Р»РµР»СЊРЅРѕРј РїРѕС‚РѕРєРµ
 				
-				//фильтрация списка продуктов
+				//С„РёР»СЊС‚СЂР°С†РёСЏ СЃРїРёСЃРєР° РїСЂРѕРґСѓРєС‚РѕРІ
 				ArrayList<HashMap<String, Object>> products = new ArrayList<HashMap<String, Object>>();
 			    for (int i = 0; i < productItems.size(); i++) 
 			    {
@@ -339,7 +339,7 @@ public class ProductsActivity extends Activity implements OnClickListener
 			    }
 			    final ArrayList<HashMap<String, Object>> _products = products;
 			    
-			    //отображение отфильтрованного списка продуктов
+			    //РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅРѕРіРѕ СЃРїРёСЃРєР° РїСЂРѕРґСѓРєС‚РѕРІ
 			    handler.post(new Runnable() 
 			    {
 					@Override
@@ -355,25 +355,25 @@ public class ProductsActivity extends Activity implements OnClickListener
 		});
 		thread.start();
 		
-		//установка недоступности кнопок
+		//СѓСЃС‚Р°РЅРѕРІРєР° РЅРµРґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРЅРѕРїРѕРє
 		buttonToMenu.setEnabled(false);
 		buttonDelete.setEnabled(false);
 		buttonUpdate.setEnabled(false);
 		buttonOK.setEnabled(false);
 	}
 
-	//обработчик нажатия кнопки "Редактировать"
+	//РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"
 	@Override
 	public void onClick(View arg0) 
 	{
-		//передача идентификатора текущего продукта форме "Новый продукт"
+		//РїРµСЂРµРґР°С‡Р° РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР° С‚РµРєСѓС‰РµРіРѕ РїСЂРѕРґСѓРєС‚Р° С„РѕСЂРјРµ "РќРѕРІС‹Р№ РїСЂРѕРґСѓРєС‚"
 		int id = Integer.parseInt((String)((TextView)currentRow.getChildAt(0)).getText());
 		Intent intent = new Intent(ProductsActivity.this, NewProductActivity.class);
 		intent.putExtra("Id", id);
 		startActivityForResult(intent, 0);
 	}
 	
-	//обновление данных о продукте после редактирования
+	//РѕР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ РїСЂРѕРґСѓРєС‚Рµ РїРѕСЃР»Рµ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
