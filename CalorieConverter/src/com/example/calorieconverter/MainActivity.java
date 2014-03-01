@@ -8,84 +8,84 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-//РєР»Р°СЃСЃ РіР»Р°РІРЅРѕР№ С„РѕСЂРјС‹
+//класс главной формы
 public class MainActivity extends Activity 
 {
-	private Button buttonNewProduct;	//РєРЅРѕРїРєР° "РќРѕРІС‹Р№ РїСЂРѕРґСѓРєС‚"
-	private Button buttonProducts;		//РєРЅРѕРїРєР° "РџСЂРѕРґСѓРєС‚С‹"
-	private Button buttonNewDish;		//РєРЅРѕРїРєР° "РќРѕРІРѕРµ Р±Р»СЋРґРѕ"
-	private Button buttonDishes;		//РєРЅРѕРїРєР° "Р‘Р»СЋРґР°"
-	private Button buttonMenu;		//РєРЅРѕРїРєР° "РњРµРЅСЋ"
+	private Button buttonNewProduct;	//кнопка "Новый продукт"
+	private Button buttonProducts;		//кнопка "Продукты"
+	private Button buttonNewDish;		//кнопка "Новое блюдо"
+	private Button buttonDishes;		//кнопка "Блюда"
+	private Button buttonMenu;			//кнопка "Меню"
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
-		//СЃРѕР·РґР°РЅРёРµ С„РѕСЂРјС‹
+		//создание формы
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		//РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ СѓРїСЂР°РІР»РµРЅРёСЏ
+		//инициализация элементов управления
 		buttonNewProduct = (Button)findViewById(R.id.main_buttonNewProduct);
 		buttonProducts = (Button)findViewById(R.id.main_buttonProducts);
 		buttonNewDish = (Button)findViewById(R.id.main_buttonNewDish);
 		buttonDishes = (Button)findViewById(R.id.main_buttonDishes);
 		buttonMenu = (Button)findViewById(R.id.main_buttonMenu);
 		
-		//РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РќРѕРІС‹Р№ РїСЂРѕРґСѓРєС‚"
+		//обработчик нажатия кнопки "Новый продукт"
 		buttonNewProduct.setOnClickListener(new OnClickListener() 
 		{
 			@Override
 			public void onClick(View v) 
 			{
-				//РїРµСЂРµС…РѕРґ РЅР° С„РѕСЂРјСѓ "РќРѕРІС‹Р№ РїСЂРѕРґСѓРєС‚"
+				//переход на форму "Новый продукт"
 				Intent intent = new Intent(MainActivity.this, NewProductActivity.class);
 				startActivity(intent);
 			}
 		});
 		
-		//РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РџСЂРѕРґСѓРєС‚С‹"
+		//обработчик нажатия кнопки "Продукты"
 		buttonProducts.setOnClickListener(new OnClickListener() 
 		{
 			@Override
 			public void onClick(View v) 
 			{
-				//РїРµСЂРµС…РѕРґ РЅР° С„РѕСЂРјСѓ "РџСЂРѕРґСѓРєС‚С‹"
+				//переход на форму "Продукты"
 				Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
 				startActivity(intent);
 			}
 		});
 		
-		//РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РќРѕРІРѕРµ Р±Р»СЋРґРѕ"
+		//обработчик нажатия кнопки "Новое блюдо"
 		buttonNewDish.setOnClickListener(new OnClickListener() 
 		{
 			@Override
 			public void onClick(View v) 
 			{
-				//РїРµСЂРµС…РѕРґ РЅР° С„РѕСЂРјСѓ "РќРѕРІРѕРµ Р±Р»СЋРґРѕ"
+				//переход на форму "Новое блюдо"
 				Intent intent = new Intent(MainActivity.this, NewDishActivity.class);
 				startActivity(intent);
 			}
 		});
 		
-		//РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "Р‘Р»СЋРґР°"
+		//обработчик нажатия кнопки "Блюда"
 		buttonDishes.setOnClickListener(new OnClickListener() 
 		{
 			@Override
 			public void onClick(View v) 
 			{
-				//РїРµСЂРµС…РѕРґ РЅР° С„РѕСЂРјСѓ "Р‘Р»СЋРґР°"
+				//переход на форму "Блюда"
 				Intent intent = new Intent(MainActivity.this, DishesActivity.class);
 				startActivity(intent);
 			}
 		});
 		
-		//РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РњРµРЅСЋ"
+		//обработчик нажатия кнопки "Меню"
 		buttonMenu.setOnClickListener(new OnClickListener() 
 		{
 			@Override
 			public void onClick(View v) 
 			{
-				//РїРµСЂРµС…РѕРґ РЅР° С„РѕСЂРјСѓ "РњРµРЅСЋ"
+				//переход на форму "Меню"
 				Intent intent = new Intent(MainActivity.this, MenuActivity.class);
 				startActivity(intent);
 			}

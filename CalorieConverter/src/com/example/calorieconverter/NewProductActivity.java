@@ -14,45 +14,45 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.view.View.OnClickListener;
 
-//С„РѕСЂРјР° "РќРѕРІС‹Р№ РїСЂРѕРґСѓРєС‚"
+//форма "Новый продукт"
 public class NewProductActivity extends Activity
 {
-	private int currentId;	//РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С‚РµРєСѓС‰РµРіРѕ РїСЂРѕРґСѓРєС‚Р°
+	private int currentId;	//идентификатор текущего продукта
 	
-	private Spinner productTypesSpinner;		//РІС‹РїР°РґР°СЋС‰РёР№ СЃРїРёСЃРѕРє "РўРёРїС‹ РїСЂРѕРґСѓРєС‚РѕРІ"
-	private EditText nameEditText;			//РїРѕР»Рµ "РќР°Р·РІР°РЅРёРµ РїСЂРѕРґСѓРєС‚Р°"
-	private EditText caloriesEditText;		//РїРѕР»Рµ "РљРєР°Р»"
-	private EditText proteinsEditText;		//РїРѕР»Рµ "Р‘РµР»РєРё"
-	private EditText fatsEditText;			//РїРѕР»Рµ "Р–РёСЂС‹"
-	private EditText carbohydratesEditText;		//РїРѕР»Рµ "РЈРіР»РµРІРѕРґС‹"
-	private Button buttonOK;			//РєРЅРѕРїРєР° "OK"
-	private Button buttonCancel;			//РєРЅРѕРїРєР° "РћС‚РјРµРЅР°"
+	private Spinner productTypesSpinner;		//выпадающий список "Типы продуктов"
+	private EditText nameEditText;				//поле "Название продукта"
+	private EditText caloriesEditText;			//поле "Ккал"
+	private EditText proteinsEditText;			//поле "Белки"
+	private EditText fatsEditText;				//поле "Жиры"
+	private EditText carbohydratesEditText;		//поле "Углеводы"
+	private Button buttonOK;					//кнопка "OK"
+	private Button buttonCancel;				//кнопка "Отмена"
 	
-	private Database helper;	//РѕР±СЉРµРєС‚ СЂР°Р±РѕС‚С‹ СЃ Р±Р°Р·РѕР№
+	private Database helper;	//объект работы с базой
 	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
-		//СЃРѕР·РґР°РЅРёРµ С„РѕСЂРјС‹
+		//создание формы
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_newproduct);
 	    
-	    //РїРѕР»СѓС‡РµРЅРёРµ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР° С‚РµРєСѓС‰РµРіРѕ РїСЂРѕРґСѓРєС‚Р°
+	    //получение идентификатора текущего продукта
 	    try
 	    {
 	    	currentId = getIntent().getExtras().getInt("Id");
-	    	//С„РѕСЂРјР° РѕС‚РєСЂС‹С‚Р° РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РїСЂРѕРґСѓРєС‚Р°
+	    	//форма открыта для редактирования существующего продукта
 	    }
 	    catch (Exception e)
 	    {
 	    	currentId = -1;
-	    	//РѕСЂРјР° РѕС‚РєСЂС‹С‚Р° РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕРіРѕ РїСЂРѕРґСѓРєС‚Р°
+	    	//форма открыта для добавления нового продукта
 	    }
 	    
 	    helper = new Database(this);
 	    
-	    //РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЌР»РµРјРµРЅС‚РѕРІ СѓРїСЂР°РІР»РµРЅРёСЏ
+	    //инициализация элементов управления
 	    productTypesSpinner = (Spinner)findViewById(R.id.newProduct_productTypesSinner);
 	    nameEditText = (EditText)findViewById(R.id.newProduct_nameEditText);
 	    caloriesEditText = (EditText)findViewById(R.id.newProduct_caloriesEditText);
@@ -62,14 +62,14 @@ public class NewProductActivity extends Activity
 	    buttonOK = (Button)findViewById(R.id.newProduct_buttonOK);
 	    buttonCancel = (Button)findViewById(R.id.newProduct_buttonCancel);
 	    
-	    //Р·Р°РїРѕР»РЅРµРЅРёСЏ РІС‹РїР°РґР°СЋС‰РµРіРѕ СЃРїРёСЃРєР° С‚РёРїР°РјРё РїСЂРѕРґСѓРєС‚РѕРІ РёР· Р±Р°Р·С‹
+	    //заполнения выпадающего списка типами продуктов из базы
 	    ArrayAdapter<ProductType> spinnerArrayAdapter = new ArrayAdapter<ProductType>(this, android.R.layout.simple_spinner_item, helper.getProductTypes());
 		spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		productTypesSpinner.setAdapter(spinnerArrayAdapter);
 		
 		if (currentId != -1)
 		{
-			//РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ СЂРµРґР°РєС‚РёСЂСѓРµРјРѕРіРѕ РїСЂРѕРґСѓРєС‚Р°
+			//отображение параметров редактируемого продукта
 			Product product = helper.getProduct(currentId);
 			nameEditText.setText(product.Name);
 			caloriesEditText.setText(Double.toString(product.Calories));
@@ -78,23 +78,23 @@ public class NewProductActivity extends Activity
 			carbohydratesEditText.setText(Double.toString(product.Carbohydrates));
 		}
 	    
-		//РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "OK"
+		//обработчик нажатия кнопки "OK"
 	    buttonOK.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{
-				//РїСЂРѕРІРµСЂРєР° РІРІРµРґРµРЅРЅС‹СЉ РґР°РЅРЅС‹С…
+				//проверка введенныъ данных
 				if (nameEditText.getText().toString().isEmpty() 
 						|| !tryParseDouble(caloriesEditText.getText().toString()) 
 						|| !tryParseDouble(proteinsEditText.getText().toString())
 						|| !tryParseDouble(fatsEditText.getText().toString())
 						|| !tryParseDouble(carbohydratesEditText.getText().toString()))
 				{
-					//РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ
+					//отображение сообщения об ошибке
 					AlertDialog.Builder dialog = new AlertDialog.Builder(NewProductActivity.this);
-	    			dialog.setTitle("РћС€РёР±РєР°");
-	    			dialog.setMessage("РќРµРІРµСЂРЅС‹Рµ РІС…РѕРґРЅС‹Рµ РґР°РЅРЅС‹Рµ");
+	    			dialog.setTitle("Ошибка");
+	    			dialog.setMessage("Неверные входные данные");
 	    			dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() 
 	    			{
     					@Override
@@ -104,7 +104,7 @@ public class NewProductActivity extends Activity
 				}
 				else
 				{
-					//СЃРѕС…СЂР°РЅРµРЅРёРµ РїСЂРѕРґСѓРєС‚Р°
+					//сохранение продукта
 					Product product = new Product();
 					product.Id = currentId;
 					product.Name = nameEditText.getText().toString();
@@ -116,13 +116,13 @@ public class NewProductActivity extends Activity
 				
 					if (currentId != -1) 
 					{ 
-						//СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р°Р·Рµ
+						//редактирование существующего продукта в базе
 						helper.updateProduct(product);
 						setResult(RESULT_OK);
 					}
 					else
 					{
-						//РґРѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ РїСЂРѕРґСѓРєС‚Р° РІ Р±Р°Р·Сѓ
+						//добавление нового продукта в базу
 						helper.insertProduct(product);
 					}
 					finish();
@@ -130,19 +130,19 @@ public class NewProductActivity extends Activity
 			}
 	    });
 	    
-	    //РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё "РћС‚РјРµРЅР°"
+	    //обработчик нажатия кнопки "Отмена"
 	    buttonCancel.setOnClickListener(new OnClickListener() 
 	    {
 			@Override
 			public void onClick(View v) 
 			{ 
-				//Р·Р°РєСЂС‹С‚РёРµ С„РѕСЂРјС‹
+				//закрытие формы
 				finish(); 
 			}
 	    });
 	}
 	
-	//РїСЂРѕРІРµСЂРєР°, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СЃС‚СЂРѕРєР° С‡РёСЃР»РѕРј
+	//проверка, является ли строка числом
 	private boolean tryParseDouble(String input)
 	{
 		try
